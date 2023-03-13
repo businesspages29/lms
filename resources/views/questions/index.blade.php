@@ -3,10 +3,10 @@
     <div class="container mt-2">
         <div class="d-flex justify-content-between mb-2">
             <div>
-                <h3>Roles</h3>
+                <h3>Questions</h3>
             </div>
             <div>
-                <a class="btn btn-success" href="{{ route('roles.create') }}"> Create Role</a>
+                <a class="btn btn-success" href="{{ route('questions.create') }}"> Create Question</a>
             </div>
         </div>
         @if ($message = Session::get('success'))
@@ -14,12 +14,15 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="card p-3 mt-2">
+        <div class="card-body">
             <table class="table table-bordered w-100" id="datatable-crud">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <th>User</th>
+                        <th>Content</th>
+                        <th>Timer in Seconds</th>
+                        <th>position</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -38,14 +41,26 @@
             $('#datatable-crud').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('roles.index') }}",
+                ajax: "{{ route('questions.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'user.name',
+                        name: 'user_id'
+                    },
+                    {
+                        data: 'content',
+                        name: 'content'
+                    },
+                    {
+                        data: 'timer',
+                        name: 'timer'
+                    },
+                    {
+                        data: 'position',
+                        name: 'position'
                     },
                     {
                         data: 'action',
@@ -63,7 +78,7 @@
                     // ajax
                     $.ajax({
                         type: "POST",
-                        url: "{{ url('delete-role') }}",
+                        url: "{{ url('delete-question') }}",
                         data: {
                             id: id
                         },

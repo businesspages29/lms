@@ -14,7 +14,7 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="card-body">
+        <div class="card p-3 mt-2">
             <table class="table table-bordered w-100" id="datatable-crud">
                 <thead>
                     <tr>
