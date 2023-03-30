@@ -4,15 +4,15 @@
         <div class="d-flex justify-content-between mb-2">
             <div>
                 <h3>
-                    @if (request()->route()->getName() == 'questions.create')
-                        Add Question
+                    @if (request()->route()->getName() == 'leave-master.create')
+                        Add Leave Master
                     @else
-                        Edit Question
+                        Edit Leave Master
                     @endif
                 </h3>
             </div>
             <div>
-                <a class="btn btn-danger" href="{{ route('questions.index') }}"> Back</a>
+                <a class="btn btn-danger" href="{{ route('leave-master.index') }}"> Back</a>
             </div>
         </div>
         @if (session('status'))
@@ -23,21 +23,17 @@
         <div class="card p-3 mt-2">
 
             <form id="role-form"
-                @if (request()->route()->getName() == 'questions.create') action="{{ route('questions.store') }}" 
+                @if (request()->route()->getName() == 'leave-master.create') action="{{ route('leave-master.store') }}" 
                 @else
-                action="{{ route('questions.update', $question->id) }}" @endif
+                action="{{ route('leave-master.update', $role->id) }}" @endif
                 method="POST" enctype="multipart/form-data">
-                @if (request()->route()->getName() != 'questions.create')
+                @if (request()->route()->getName() != 'leave-master.create')
                     @method('PUT')
                 @endif
                 @csrf
                 <div class="row">
-                    <x-forms.select-field label="User" name="user_id" :options="$users"
-                        value="{{ !empty($user->user_id) ? $user->user_id : old('user_id') }}" />
-                    <x-forms.text-field type="number" label="Timer in Seconds" name="timer"
-                        value="{{ !empty($question->timer) ? $question->timer : old('timer') }}" />
-                    <x-forms.text-field type="textarea" label="Content" name="content"
-                        value="{{ !empty($question->content) ? $question->content : old('content') }}" />
+                    <x-forms.text-field label="Name" name="name"
+                        value="{{ !empty($role->name) ? $role->name : old('name') }}" />
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>

@@ -26,8 +26,16 @@ class User extends Authenticatable
         'email',
         'password',
         'phone_number',
-        'status',
         'role_id',
+        'first_name',
+        'last_name',
+        'username',
+        'employee_code',
+        'address',
+        'city',
+        'state',
+        'country',
+        'zip',
     ];
 
     /**
@@ -49,26 +57,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getStatusNameAttribute()
-    {
-        if($this->status){
-            return "Active";
-        }
-        return "Inactive";
-    }
-
-    public function scopeActive($query){
-        return $query->where('status' , 1);
-    }
-
+    
 
     public function role(): BelongsTo
     {
         return $this->belongsTo(Role::class);
     }
 
-    public function questions(): HasMany
-    {
-        return $this->hasMany(Question::class);
-    }
 }   

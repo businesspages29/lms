@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('leave_balances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('content');
-            $table->integer('timer')->default(0);
-            $table->integer('position')->default(0);
+            $table->unsignedBigInteger('leave_master_id');
+            $table->tinyInteger('balance')->default(0)->comment('leave balance');
             $table->timestamps();
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('leave_master_id')->references('id')->on('leave_masters')->onDelete('cascade');
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('leave_balances');
     }
 };

@@ -4,15 +4,15 @@
         <div class="d-flex justify-content-between mb-2">
             <div>
                 <h3>
-                    @if (request()->route()->getName() == 'answers.create')
-                        Add Answers
+                    @if (request()->route()->getName() == 'non-working-day.create')
+                        Add non-working-day
                     @else
-                        Edit Answers
+                        Edit non-working-day
                     @endif
                 </h3>
             </div>
             <div>
-                <a class="btn btn-danger" href="{{ route('answers.index', $question->id) }}"> Back</a>
+                <a class="btn btn-danger" href="{{ route('non-working-day.index') }}"> Back</a>
             </div>
         </div>
         @if (session('status'))
@@ -23,23 +23,17 @@
         <div class="card p-3 mt-2">
 
             <form id="role-form"
-                @if (request()->route()->getName() == 'answers.create') action="{{ route('answers.store', $question->id) }}" 
+                @if (request()->route()->getName() == 'non-working-day.create') action="{{ route('non-working-day.store') }}" 
                 @else
-                action="{{ route('answers.update', $answer->id) }}" @endif
+                action="{{ route('non-working-day.update', $role->id) }}" @endif
                 method="POST" enctype="multipart/form-data">
-                @if (request()->route()->getName() != 'answers.create')
+                @if (request()->route()->getName() != 'non-working-day.create')
                     @method('PUT')
                 @endif
                 @csrf
                 <div class="row">
-                    <input type="hidden" name="question_id" value="{{ $question->id }}">
-                    <x-forms.text-field class="col-md-12" type="textarea" label="Content" name="content"
-                        value="{{ !empty($answer->content) ? $answer->content : old('content') }}" />
-                    <x-forms.select-field label="Correct" name="is_correct" :options="[
-                        'false' => 'False',
-                        'true' => 'True',
-                    ]"
-                        value="{{ !empty($answer->is_correct) ? $answer->is_correct : old('is_correct') }}" />
+                    <x-forms.text-field type="date" label="Date" name="date"
+                        value="{{ !empty($role->date) ? $role->date : old('date') }}" />
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary ml-3">Submit</button>
@@ -49,7 +43,7 @@
     </div>
 @endsection
 @push('js')
-    {{-- <script>
+    <script>
         if ($("#role-form").length > 0) {
             $("#role-form").validate({
                 rules: {
@@ -60,5 +54,5 @@
                 },
             })
         }
-    </script> --}}
+    </script>
 @endpush

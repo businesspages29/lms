@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\NonWorkingDay;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class NonWorkingDayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +13,13 @@ class RoleController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            return datatables()->of(Role::select('*'))
-            ->addColumn('action', 'roles.action')
+            return datatables()->of(NonWorkingDay::select('*'))
+            ->addColumn('action', 'nonworkingday.action')
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
         }
-        return view('roles.index'); 
+        return view('nonworkingday.index'); 
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.edit');
+        return view('nonworkingday.edit');
     }
 
     /**
@@ -36,27 +36,14 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name',
+            'date' => 'required|date',
         ]);
-        $input = $request->only('name');
-        Role::create([
-            'name' => $input['name']
+        $input = $request->only('date');
+        NonWorkingDay::create([
+            'date' => $input['date']
         ]);
-        return redirect()->route('roles.index')
-        ->with('success','Role has been created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        try {
-            $role = Role::findOrFail($id);
-            return view('roles.show',compact('role'));
-        } catch (\Exception $e) {
-            abort(404);
-        }
+        return redirect()->route('non-working-day.index')
+        ->with('success','non-working-day has been created successfully.');
     }
 
     /**
@@ -65,8 +52,8 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         try {
-            $role = Role::findOrFail($id);
-            return view('roles.edit',compact('role'));
+            $role = NonWorkingDay::findOrFail($id);
+            return view('nonworkingday.edit',compact('role'));
         } catch (\Exception $e) {
             abort(404);
         }
@@ -79,16 +66,16 @@ class RoleController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name,'.$id,
+            'date' => 'required|date',
         ]);
-        $input = $request->only('name');
+        $input = $request->only('date');
         try {
-            $role = Role::findOrFail($id);
+            $role = NonWorkingDay::findOrFail($id);
             if($role){
                 $role->update($input);
             }
-        return redirect()->route('roles.index')
-            ->with('success','Role Has Been updated successfully');
+        return redirect()->route('non-working-day.index')
+            ->with('success','non-working-day Has Been updated successfully');
         } catch (\Exception $e) {
             abort(404);
         }
@@ -100,7 +87,7 @@ class RoleController extends Controller
     public function destroy(Request $request)// string $id
     {
         $input = $request->only('id');
-        $role = Role::where('id',$input['id']);
+        $role = NonWorkingDay::where('id',$input['id']);
         if($role){
             $role->delete();
         }

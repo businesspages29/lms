@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\LeaveMaster;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class LeaveMasterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,13 +13,13 @@ class RoleController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            return datatables()->of(Role::select('*'))
-            ->addColumn('action', 'roles.action')
+            return datatables()->of(LeaveMaster::select('*'))
+            ->addColumn('action', 'leavemaster.action')
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
         }
-        return view('roles.index'); 
+        return view('leavemaster.index'); 
     }
 
     /**
@@ -27,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('roles.edit');
+        return view('leavemaster.edit');
     }
 
     /**
@@ -36,27 +36,14 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name',
+            'name' => 'required',
         ]);
         $input = $request->only('name');
-        Role::create([
+        LeaveMaster::create([
             'name' => $input['name']
         ]);
-        return redirect()->route('roles.index')
-        ->with('success','Role has been created successfully.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        try {
-            $role = Role::findOrFail($id);
-            return view('roles.show',compact('role'));
-        } catch (\Exception $e) {
-            abort(404);
-        }
+        return redirect()->route('leave-master.index')
+        ->with('success','Leave master has been created successfully.');
     }
 
     /**
@@ -65,8 +52,8 @@ class RoleController extends Controller
     public function edit(string $id)
     {
         try {
-            $role = Role::findOrFail($id);
-            return view('roles.edit',compact('role'));
+            $role = LeaveMaster::findOrFail($id);
+            return view('leavemaster.edit',compact('role'));
         } catch (\Exception $e) {
             abort(404);
         }
@@ -79,16 +66,16 @@ class RoleController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => 'required|unique:roles,name,'.$id,
+            'name' => 'required',
         ]);
         $input = $request->only('name');
         try {
-            $role = Role::findOrFail($id);
+            $role = LeaveMaster::findOrFail($id);
             if($role){
                 $role->update($input);
             }
-        return redirect()->route('roles.index')
-            ->with('success','Role Has Been updated successfully');
+        return redirect()->route('leave-master.index')
+            ->with('success','Leave master Has Been updated successfully');
         } catch (\Exception $e) {
             abort(404);
         }
@@ -100,7 +87,7 @@ class RoleController extends Controller
     public function destroy(Request $request)// string $id
     {
         $input = $request->only('id');
-        $role = Role::where('id',$input['id']);
+        $role = LeaveMaster::where('id',$input['id']);
         if($role){
             $role->delete();
         }

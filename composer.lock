@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "788db122d8dc931dff55471d17d11812",
+    "content-hash": "1aaadd5ff806e24e08f3424ed179df20",
     "packages": [
         {
             "name": "brick/math",
@@ -2781,6 +2781,84 @@
             "time": "2023-01-29T21:24:40+00:00"
         },
         {
+            "name": "rajtechnologies/laravel-tools",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/RajTechnologiesPvtLtd/laravel-tools.git",
+                "reference": "01ad4084939e49ebe7d2854e48a765f74a57daf8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/RajTechnologiesPvtLtd/laravel-tools/zipball/01ad4084939e49ebe7d2854e48a765f74a57daf8",
+                "reference": "01ad4084939e49ebe7d2854e48a765f74a57daf8",
+                "shasum": ""
+            },
+            "require-dev": {
+                "raviyatechnical/laravel-action-generator": "dev-master",
+                "raviyatechnical/laravel-pivot-table-generator": "dev-master",
+                "raviyatechnical/laravel-repository-generator": "dev-master",
+                "raviyatechnical/laravel-service-generator": "dev-master"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RajTechnologies\\Tools\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RajTechnologies\\Tools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bhargav Raviya",
+                    "email": "rajtechnologies@gmail.com"
+                }
+            ],
+            "description": "All Type of Base Tools to Helping Development and Repository Generator",
+            "keywords": [
+                "action",
+                "artisan",
+                "cli",
+                "generator",
+                "laravel",
+                "laravel-clear-cache",
+                "laravel-http-status-code-list",
+                "laravel-pwa",
+                "laravel-routes-view-list",
+                "migrations",
+                "pattern",
+                "php",
+                "pivot",
+                "pwa-laravel",
+                "services"
+            ],
+            "support": {
+                "issues": "https://github.com/RajTechnologiesPvtLtd/laravel-tools/issues",
+                "source": "https://github.com/RajTechnologiesPvtLtd/laravel-tools/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bhargavraviya",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/raviyatechnical",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-02-11T10:50:44+00:00"
+        },
+        {
             "name": "ralouphie/getallheaders",
             "version": "3.0.3",
             "source": {
@@ -3004,6 +3082,69 @@
                 }
             ],
             "time": "2023-01-12T18:13:24+00:00"
+        },
+        {
+            "name": "raviyatechnical/laravel-helper-generator",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raviyatechnical/laravel-helper-generator.git",
+                "reference": "d819d1fee9d7687db97b83060f0bca03718b8b3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raviyatechnical/laravel-helper-generator/zipball/d819d1fee9d7687db97b83060f0bca03718b8b3a",
+                "reference": "d819d1fee9d7687db97b83060f0bca03718b8b3a",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RaviyaTechnical\\HelperGenerator\\HelperGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RaviyaTechnical\\HelperGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bhargav Raviya",
+                    "email": "raviyatechnical@gmail.com"
+                }
+            ],
+            "description": "Generate Laravel Helper",
+            "keywords": [
+                "artisan",
+                "cli",
+                "generator",
+                "helper",
+                "laravel",
+                "pattern",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/raviyatechnical/laravel-helper-generator/issues",
+                "source": "https://github.com/raviyatechnical/laravel-helper-generator/tree/v1.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bhargavraviya",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/raviyatechnical",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-03-19T07:34:00+00:00"
         },
         {
             "name": "symfony/console",
@@ -7958,7 +8099,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "rajtechnologies/laravel-tools": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

@@ -33,6 +33,11 @@
                     </a>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <x-leave-form />
+                </div>
+            </div>
         </div>
     </div>
 @endsection

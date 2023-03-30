@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $roles_count = Role::count();
-        $users_count = User::active()->count();
+        $users_count = User::count();
         $data = [
             'roles_count' => $roles_count,
             'users_count' => $users_count

@@ -3,10 +3,10 @@
     <div class="container mt-2">
         <div class="d-flex justify-content-between mb-2">
             <div>
-                <h3>Questions</h3>
+                <h3>Non Working Day</h3>
             </div>
             <div>
-                <a class="btn btn-success" href="{{ route('questions.create') }}"> Create Question</a>
+                <a class="btn btn-success" href="{{ route('non-working-day.create') }}"> Create Non Working Day</a>
             </div>
         </div>
         @if ($message = Session::get('success'))
@@ -14,15 +14,12 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <div class="card-body">
+        <div class="card p-3 mt-2">
             <table class="table table-bordered w-100" id="datatable-crud">
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>User</th>
-                        <th>Content</th>
-                        <th>Timer in Seconds</th>
-                        <th>position</th>
+                        <th>Date</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -41,26 +38,14 @@
             $('#datatable-crud').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('questions.index') }}",
+                ajax: "{{ route('non-working-day.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'user.name',
-                        name: 'user_id'
-                    },
-                    {
-                        data: 'content',
-                        name: 'content'
-                    },
-                    {
-                        data: 'timer',
-                        name: 'timer'
-                    },
-                    {
-                        data: 'position',
-                        name: 'position'
+                        data: 'date_format',
+                        name: 'date_format'
                     },
                     {
                         data: 'action',
@@ -78,7 +63,7 @@
                     // ajax
                     $.ajax({
                         type: "POST",
-                        url: "{{ url('delete-question') }}",
+                        url: "{{ url('delete-non-working-day') }}",
                         data: {
                             id: id
                         },
