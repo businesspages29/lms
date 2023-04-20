@@ -1,5 +1,5 @@
 
-# Samcom Technobrains
+# Ecomm
 
 Project Test
 
@@ -15,7 +15,7 @@ Project Test
 Install my-project with npm
 
 ```bash
-  cd samcomtechnobrains
+  cd ecomm
 ```
 
 Composer Install 
@@ -33,7 +33,7 @@ Setup Env (using .env.example)
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=samcomtechnobrains
+DB_DATABASE=ecomm
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -41,6 +41,11 @@ DB_PASSWORD=
 Setup Migration 
 ```bash
 php artisan migrate:fresh --seed
+```
+
+Laravel Migration setup
+```bash
+php artisan storage:link
 ```
 
 Login Credentials

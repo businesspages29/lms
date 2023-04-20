@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', [HomeController::class, 'index'])->name('products.index');
 
 Auth::routes();
 
@@ -31,13 +30,7 @@ Route::post('delete-role', [RoleController::class,'destroy']);
 Route::resource('users', UserController::class)->except('destroy');
 Route::post('delete-user', [UserController::class,'destroy']);
 
-Route::resource('questions/{id}/answers', AnswerController::class)->except('destroy');
-Route::post('delete-answer', [AnswerController::class,'destroy']);
 
-Route::resource('questions', QuestionController::class)->except('destroy');
-Route::post('delete-question', [QuestionController::class,'destroy']);
 
-Route::controller(SurveyController::class)->group(function () {
-    Route::get('survey', 'form')->name('survey.form');
-    Route::post('survey', 'store')->name('survey.store');
-});
+Route::post('ajax-category', [HomeController::class,'ajaxCategory'])->name('ajaxCategory');
+Route::post('ajax-product', [HomeController::class,'ajaxProduct'])->name('ajaxProduct');

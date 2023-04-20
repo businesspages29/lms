@@ -1,7 +1,7 @@
 <div
     @if (!empty($class)) class="{{ $class }}"
     @else
-    class="col-xs-12 col-sm-12 col-md-6" @endif>
+    class="col-xs-12 col-sm-12 col-md-12" @endif>
     <div class="form-group">
         <strong>{{ $label }}:</strong>
         @if (!empty($type) && $type == 'textarea')
