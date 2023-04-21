@@ -1,11 +1,9 @@
 <?php
 
-use App\Http\Controllers\AnswerController;
-use App\Http\Controllers\QuestionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SurveyController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +29,5 @@ Route::post('delete-role', [RoleController::class,'destroy']);
 Route::resource('users', UserController::class)->except('destroy');
 Route::post('delete-user', [UserController::class,'destroy']);
 
-Route::resource('questions/{id}/answers', AnswerController::class)->except('destroy');
-Route::post('delete-answer', [AnswerController::class,'destroy']);
-
-Route::resource('questions', QuestionController::class)->except('destroy');
-Route::post('delete-question', [QuestionController::class,'destroy']);
-
-Route::controller(SurveyController::class)->group(function () {
-    Route::get('survey', 'form')->name('survey.form');
-    Route::post('survey', 'store')->name('survey.store');
-});
+Route::resource('bookings', BookingController::class)->except('destroy');
+Route::post('delete-booking', [BookingController::class,'destroy']);

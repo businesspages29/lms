@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questions', function (Blueprint $table) {
+        Schema::create('bookings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('content');
-            $table->integer('timer')->default(0);
-            $table->integer('position')->default(0);
+            $table->string('name');
+            $table->string('email');
+            $table->enum('type', ['full', 'half'])->default('full');
+            $table->enum('slot', ['morning', 'evening'])->default('morning');
+            $table->date('date');
+            $table->time('time');            
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('bookings');
     }
 };

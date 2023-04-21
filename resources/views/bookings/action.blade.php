@@ -1,8 +1,8 @@
-<a href="{{ route('answers.index', $id) }}" data-toggle="tooltip" data-original-title="View"
+<a href="{{ route('bookings.show', $id) }}" data-toggle="tooltip" data-original-title="View"
     class="edit btn btn-primary view">
     View
 </a>
-<a href="{{ route('questions.edit', $id) }}" data-toggle="tooltip" data-original-title="Edit"
+<a href="{{ route('bookings.edit', $id) }}" data-toggle="tooltip" data-original-title="Edit"
     class="edit btn btn-success edit">
     Edit
 </a>
