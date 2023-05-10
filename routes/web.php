@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Front\HomeController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,21 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [HomeController::class, 'index'])->name('products.index');
+Route::get('/', function () {
+    return redirect()->route('home');
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('roles', RoleController::class)->except('destroy');
-Route::post('delete-role', [RoleController::class,'destroy']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('roles', RoleController::class)->except('destroy');
+    Route::post('delete-role', [RoleController::class,'destroy']);
 
-Route::resource('users', UserController::class)->except('destroy');
-Route::post('delete-user', [UserController::class,'destroy']);
+    Route::resource('users', UserController::class)->except('destroy');
+    Route::post('delete-user', [UserController::class,'destroy']);
 
+    Route::resource('categories', CategoryController::class)->except('destroy');
+    Route::post('delete-category', [CategoryController::class,'destroy']);
 
-
-Route::post('ajax-category', [HomeController::class,'ajaxCategory'])->name('ajaxCategory');
-Route::post('ajax-product', [HomeController::class,'ajaxProduct'])->name('ajaxProduct');
+    Route::resource('products', ProductController::class)->except('destroy');
+    Route::post('delete-product', [ProductController::class,'destroy']);
+    Route::post('product-image/{id}', [ProductController::class,'uploadImage'])->name('products.uploadimage');
+});

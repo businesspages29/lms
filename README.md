@@ -1,9 +1,7 @@
 
-# Ecomm
+# Ecomm 2
 
 Project Test
-
-
 
 ## Authors
 

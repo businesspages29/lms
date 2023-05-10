@@ -100,12 +100,10 @@
                 </div>
             </div>
         </nav>
-        <x-category-menu />
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    <x-modals.category-modal />
 
     <script>
         $.ajaxSetup({

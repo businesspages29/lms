@@ -13,13 +13,22 @@ class Product extends Model
         'name',
         'slug',
         'description',
-        'image',
+        'price',
+        'options'
     ];
+
+    protected $casts = [
+        'options' => 'array',
+    ];
+
+    protected $appends = ['image_url'];
+
 
     public function getImageUrlAttribute()
     {
-        if(!empty($this->image)){
-            return asset('storage/products/'.$this->image);
+        $res = $this->hasMany(ProductImage::class)->first();
+        if($res){
+            return $res->image_url;
         }
         return asset('product.png');
     }
@@ -29,9 +38,9 @@ class Product extends Model
         return $query->where('category_id',$category_id);
     }
 
-    public function variants()
+    public function images()
     {
-        return $this->hasMany(ProductVariant::class, 'product_id');
+        return $this->hasMany(ProductImage::class);
     }
     
 }

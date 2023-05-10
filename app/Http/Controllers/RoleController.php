@@ -104,7 +104,6 @@ class RoleController extends Controller
         if($role){
             $role->delete();
         }
-        return Response()->json($role);
-        
+        return response()->json($role);
     }
 }
