@@ -41,6 +41,8 @@
                 @foreach ($product->images as $image)
                     <div class="col-12 col-md-3 col-lg-3">
                         <img class="img-thumbnail" src="{{ $image->image_url }}" alt="">
+                        <button class="delete" data-id="{{ $image->id }}">
+                            Delete</button>
                     </div>
                 @endforeach
             </div>
@@ -50,6 +52,11 @@
 @push('js')
     <script>
         $(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $('#ajaxForm').validate({
                 rules: {
                     image: {
@@ -71,9 +78,9 @@
                         success: function(data) {
                             console.log(data);
                             var html =
-                                '<div class="col-12 col-md-3 col-lg-3"><img class="img-thumbnail" src="' +
+                                '<div class="col-12 col-md-3 col-lg-3 delete" id="' + data
+                                .data.id + '"><img class="img-thumbnail" src="' +
                                 data.data.image + '" alt=""></div>';
-                            console.log(html);
                             $('body').find('.product-image').append(html);
                         },
                         error: function(jqXHR, exception) {
@@ -85,6 +92,24 @@
                                     "</div>");
                             });
                         },
+                    });
+                }
+            });
+
+            $('body').on('click', '.delete', function() {
+                if (confirm("Delete Record?") == true) {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ route('products.image') }}",
+                        data: {
+                            id: id
+                        },
+                        dataType: 'json',
+                        success: function(res) {
+                            var oTable = $('#datatable-crud').dataTable();
+                            oTable.fnDraw(false);
+                        }
                     });
                 }
             });

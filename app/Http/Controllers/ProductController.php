@@ -137,6 +137,16 @@ class ProductController extends Controller
         return response()->json($category);
     }
 
+    public function productImage(Request $request)// string $id
+    {
+        $input = $request->all();
+        $image = ProductImage::where('id',$input['id']);
+        if($image){
+            $image->delete();
+        }
+        return response()->json($image);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
@@ -157,6 +167,7 @@ class ProductController extends Controller
             return response()->json([
                 'message' => 'Category Has Been updated successfully',
                 'data' => [
+                    'id' => $image->id,
                     'image' => $image->image_url
                 ]
             ], 200);

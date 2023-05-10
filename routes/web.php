@@ -36,5 +36,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('products', ProductController::class)->except('destroy');
     Route::post('delete-product', [ProductController::class,'destroy']);
+    Route::post('delete-product-image', [ProductController::class,'productImage'])->name('products.image');
     Route::post('product-image/{id}', [ProductController::class,'uploadImage'])->name('products.uploadimage');
 });
