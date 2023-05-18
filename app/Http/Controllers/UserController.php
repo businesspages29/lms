@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Hash;
@@ -14,12 +13,9 @@ class UserController extends Controller
     public function index()
     {
         if(request()->ajax()) {
-            $user = User::select('*')->with('role');
+            $user = User::select('*');
             return datatables()->of($user)
             ->addColumn('action', 'users.action')
-            ->addColumn('role_name', function(User $user) {
-                return $user->role->name;
-            })
             ->rawColumns(['action'])
             ->addIndexColumn()
             ->make(true);
@@ -32,8 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::get()->pluck('name','id')->toArray();
-        return view('users.edit',compact('roles'));
+        return view('users.edit');
     }
 
     /**
@@ -44,9 +39,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|unique:users,email',            
-            'phone_number' => 'numeric|nullable',
-            'role_id' => 'required',
-            'status' => 'required',
             'password' => 'required',
         ]);
         $input = $request->except('_token');
@@ -77,9 +69,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         try {
-            $roles = Role::get()->pluck('name','id')->toArray();
             $user = User::findOrFail($id);
-            return view('users.edit',compact('roles','user'));
+            return view('users.edit',compact('user'));
         } catch (\Exception $e) {
             abort(404);
         }
@@ -94,9 +85,6 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|unique:users,email,'.$id,
-            'phone_number' => 'numeric|nullable',
-            'role_id' => 'required',
-            'status' => 'required',
         ]);
         $input = $request->except('_token','_method');
         if(!empty($input['password'])){
@@ -122,11 +110,11 @@ class UserController extends Controller
     public function destroy(Request $request)// string $id
     {
         $input = $request->only('id');
-        $role = User::where('id',$input['id']);
-        if($role){
-            $role->delete();
+        $user = User::where('id',$input['id']);
+        if($user){
+            $user->delete();
         }
-        return Response()->json($role);
+        return Response()->json($user);
         
     }
 }

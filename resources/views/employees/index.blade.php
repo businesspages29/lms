@@ -3,10 +3,10 @@
     <div class="container mt-2">
         <div class="d-flex justify-content-between mb-2">
             <div>
-                <h3>Users</h3>
+                <h3>Employee</h3>
             </div>
             <div>
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create User</a>
+                <a class="btn btn-success" href="{{ route('employees.create') }}"> Create Employee</a>
             </div>
         </div>
         @if ($message = Session::get('success'))
@@ -19,8 +19,11 @@
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Email</th>
+                        <th>Phone</th>
+                        <th>company</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,21 +42,31 @@
             $('#datatable-crud').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: "{{ route('employees.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
+                        data: 'first_name',
+                        name: 'first_name'
                     },
-
+                    {
+                        data: 'last_name',
+                        name: 'last_name'
+                    },
                     {
                         data: 'email',
                         name: 'email'
                     },
-
+                    {
+                        data: 'phone',
+                        name: 'phone'
+                    },
+                    {
+                        data: 'company',
+                        name: 'company'
+                    },
                     {
                         data: 'action',
                         name: 'action',
@@ -70,7 +83,7 @@
                     // ajax
                     $.ajax({
                         type: "POST",
-                        url: "{{ url('delete-user') }}",
+                        url: "{{ url('delete-employee') }}",
                         data: {
                             id: id
                         },

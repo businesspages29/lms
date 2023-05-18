@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -25,10 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $roles_count = Role::count();
         $users_count = User::count();
         $data = [
-            'roles_count' => $roles_count,
             'users_count' => $users_count
         ];
         return view('home',compact('data'));

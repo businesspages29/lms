@@ -1,0 +1,1 @@
+14. Email notification: send email whenever new company is entered (use Mailgun or Mailtrap)

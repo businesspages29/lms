@@ -67,17 +67,13 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('Employee') }}</a>
+                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('Users') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('roles.index') }}">{{ __('Roles') }}</a>
+                                <a class="nav-link" href="{{ route('companies.index') }}">{{ __('Companies') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('leave-master.index') }}">{{ __('Leave Master') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('non-working-day.index') }}">{{ __('Non Working Day') }}</a>
+                                <a class="nav-link" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

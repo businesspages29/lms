@@ -14,15 +14,7 @@
         <div class="card-body">
             {{-- {{ __('You are logged in!') }} --}}
             <div class="row">
-                <div class="col-md-6">
-                    <a href="{{ route('roles.index') }}">
-                        <div class="card">
-                            <div class="card-body">
-                                <b>Role</b> {{ $data['roles_count'] }}
-                            </div>
-                        </div>
-                    </a>
-                </div>
+
                 <div class="col-md-6">
                     <a href="{{ route('users.index') }}">
                         <div class="card">
@@ -31,11 +23,6 @@
                             </div>
                         </div>
                     </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <x-leave-form />
                 </div>
             </div>
         </div>

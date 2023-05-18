@@ -3,10 +3,10 @@
     <div class="container mt-2">
         <div class="d-flex justify-content-between mb-2">
             <div>
-                <h3>Users</h3>
+                <h3>Companies</h3>
             </div>
             <div>
-                <a class="btn btn-success" href="{{ route('users.create') }}"> Create User</a>
+                <a class="btn btn-success" href="{{ route('companies.create') }}"> Create Company</a>
             </div>
         </div>
         @if ($message = Session::get('success'))
@@ -19,6 +19,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Image</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Action</th>
@@ -39,10 +40,14 @@
             $('#datatable-crud').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('users.index') }}",
+                ajax: "{{ route('companies.index') }}",
                 columns: [{
                         data: 'id',
                         name: 'id'
+                    },
+                    {
+                        data: 'logo_url',
+                        name: 'logo_url'
                     },
                     {
                         data: 'name',
@@ -70,7 +75,7 @@
                     // ajax
                     $.ajax({
                         type: "POST",
-                        url: "{{ url('delete-user') }}",
+                        url: "{{ url('delete-company') }}",
                         data: {
                             id: id
                         },

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1aaadd5ff806e24e08f3424ed179df20",
+    "content-hash": "d85f86760b1ecde135f79d996a050443",
     "packages": [
         {
             "name": "brick/math",
@@ -6771,6 +6771,82 @@
             "time": "2023-03-01T05:37:49+00:00"
         },
         {
+            "name": "raviyatechnical/laravel-api-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/raviyatechnical/laravel-api-generator.git",
+                "reference": "518609418d4dec2c2a2a4a4874667ac6c4e25b5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/raviyatechnical/laravel-api-generator/zipball/518609418d4dec2c2a2a4a4874667ac6c4e25b5f",
+                "reference": "518609418d4dec2c2a2a4a4874667ac6c4e25b5f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.4 | ^8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RaviyaTechnical\\APIGenerator\\APIGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RaviyaTechnical\\APIGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bhargav Raviya",
+                    "email": "raviyatechnical@gmail.com",
+                    "homepage": "https://github.com/bhargavraviya",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate Laravel API",
+            "keywords": [
+                "api",
+                "api-controller",
+                "artisan",
+                "cli",
+                "controller",
+                "generator",
+                "laravel",
+                "laravel api response",
+                "laravel api response helpers",
+                "pattern",
+                "php"
+            ],
+            "support": {
+                "email": "raviyatechnical@gmail.com",
+                "issues": "https://github.com/raviyatechnical/laravel-api-generator/issues",
+                "source": "https://github.com/raviyatechnical/laravel-api-generator/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/bhargavraviya",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/raviyatechnical",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2023-05-03T08:55:08+00:00"
+        },
+        {
             "name": "sebastian/cli-parser",
             "version": "2.0.0",
             "source": {
@@ -8100,7 +8176,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "rajtechnologies/laravel-tools": 20
+        "rajtechnologies/laravel-tools": 20,
+        "raviyatechnical/laravel-api-generator": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

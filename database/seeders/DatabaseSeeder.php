@@ -12,14 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(RoleTableSeeeder::class);
-
         \App\Models\User::factory()->create([
-            'role_id' => 1,
             'name' => 'admin',
             'email' => 'admin@admin.com',
         ]);
 
-        \App\Models\User::factory(100)->create();
+        // \App\Models\User::factory(100)->create();
     }
 }
